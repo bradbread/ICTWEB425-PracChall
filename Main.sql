@@ -114,7 +114,7 @@
 
     /* 5.1 */
 
-    CREATE VIEW Task_3_Q1_View AS
+    CREATE VIEW Task_4_Q1_View AS
     SELECT C.GIVENNAME, C.SURNAME, B.TOURNAME, T.DESCRIPTION, E.EVENTYEAR, E.EVENTMONTH, E.EVENTDAY, E.FEE, B.DATEBOOKED, B.PAYMENT FROM Booking3815 AS B
     INNER JOIN Client3815 AS C
     ON B.CLIENTID = C.CLIENTID
@@ -123,5 +123,52 @@
     INNER JOIN Tour3815 AS T
     ON B.TOURNAME = T.TOURNAME
 
+    /* 6.1 */
 
+    SELECT COUNT(*) FROM Booking3815
 
+    /* this displays the total number of bookings and 
+    as we are expecting all bookings to be displayed with query 1
+    so the number here should match the number of results we get from query 1 */
+
+    /* Select Count(*) FROM Task_4_Q1_View quickly checks the number of results from query 1 */
+
+    /* 6.2 */
+
+    SELECT COUNT(*) FROM Booking3815
+
+    /* a similar concept to the first solution could be applied here
+    the sum of the results from the all NumBookings collum should be
+    equal to the count of all bookings as all bookings should be accounted for */
+
+    /* Creating a view following the previous naming convention 
+    running this should return the same the same value as the given SQL above
+    SELECT SUM(NumBookings) FROM Task_4_Q2_View */
+
+    /* 6.3 */
+
+    SELECT COUNT(*) FROM Booking3815
+
+    /* for this query we have a few options first 
+    we should check that our number of results is
+    less than our number of bookings as
+    it would not make sense for an avarage to have more 
+    people above average than people
+    or for above the average to equal to the number of people
+    assuming the same naming convention for a view of this query
+    you could check the count of results using
+    SELECT COUNT(*) FROM Task_4_Q3_View */
+
+    SELECT AVG(PAYMENT) FROM Booking3815
+
+    /* this seems redundant as the query already
+    should be displaying only results above average
+    but you can also check that no results from it
+    are below the average payment 
+    again assuming same naming convention as before for views
+    with
+    SELECT COUNT(*) FROM Task_4_Q3_View
+    WHERE PAYMENT < (SELECT AVG(PAYMENT) FROM Booking3815)
+    this should return 0 */
+
+    
